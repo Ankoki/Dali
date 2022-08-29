@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ankoki'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.kenzie.mx/releases' }
+}
+
+dependencies {
+    implementation 'com.intellij:annotations:12.0@jar'
+    implementation 'mx.kenzie:argo:1.1.5'
+}
