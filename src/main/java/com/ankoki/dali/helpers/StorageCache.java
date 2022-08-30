@@ -9,10 +9,7 @@ import mx.kenzie.argo.Json;
 import mx.kenzie.argo.meta.JsonException;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,9 +37,9 @@ public class StorageCache {
 
     protected StorageCache(File file) {
         storageFile = file;
-        try (final Json json = new Json(file)) {
+        try (final Json json = new Json(new FileInputStream(file))) {
             CACHE.putAll(json.toMap());
-        } catch (JsonException ex) {
+        } catch (JsonException | IOException ex) {
             System.err.println("There was an issue when parsing the JSON file. Full stacktrace shown below.\n");
             ex.printStackTrace();
             System.err.println("\nPlease report this to whoever applicable. Application will now close.");

@@ -16,6 +16,7 @@ public class Dali {
         else {
             File file = new File(args[0]);
             if (!file.exists()) System.err.println("The given file does not exist.");
+            else if (file.isDirectory()) System.err.println("A JSON file must be provided.");
             else {
                 StorageCache.initiate(file);
                 Runnable runnable = () -> StorageCache.getInstance().backupCache();
