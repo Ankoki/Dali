@@ -22,6 +22,6 @@ public class Mash extends Ingredient {
     @NotNull
     @Override
     public String getId() {
-        return "mashed-potato";
+        return "Mash";
     }
 }

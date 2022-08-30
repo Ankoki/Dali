@@ -9,7 +9,10 @@ import mx.kenzie.argo.Json;
 import mx.kenzie.argo.meta.JsonException;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,6 +88,42 @@ public class StorageCache {
                 CACHE.put("stock-count", stock);
             } return false;
         } else return stock.get(ingredient.getId()) >= ingredient.getPortionSize();
+    }
+
+    /**
+     * Gets all the registered dishes.
+     * @return the registered dishes.
+     */
+    public Dish[] getDishes() {
+        return dishes;
+    }
+
+    /**
+     * Gets all the registered ingredients.
+     * @return the registered ingredients.
+     */
+    public Ingredient[] getIngredients() {
+        return ingredients;
+    }
+
+    /**
+     * Backs up the current cache into the file.
+     * Called every 30 minutes by default.
+     * @return whether backup has succeeded.
+     */
+    public boolean backupCache() {
+        final String json = Json.toJson(CACHE, "  ");
+        try {
+            FileWriter fileWriter = new FileWriter(storageFile);
+            try (final BufferedWriter writer = new BufferedWriter(fileWriter)) {
+                writer.write(json);
+            }
+        } catch (IOException ex) {
+            System.err.println("There was an error backing up the ingredient cache. Full stacktrace will be shown below.\n");
+            ex.printStackTrace();
+            System.err.println("\nPlease report this to whoever applicable. Any data updated may be lost.");
+            return false;
+        } return true;
     }
 
     /**

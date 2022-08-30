@@ -1,7 +1,7 @@
 package com.ankoki.dali.impl.ingredients;
 
 import com.ankoki.dali.api.Ingredient;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class SteakPie extends Ingredient {
 
@@ -19,7 +19,7 @@ public class SteakPie extends Ingredient {
         return -1;
     }
 
-    @NotNull
+    @Nullable
     @Override
     public String getId() {
         return null;

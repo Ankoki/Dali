@@ -17,12 +17,12 @@ public class SteakPie extends Dish {
 
     @Override
     public double getPrice() {
-        return 12;
+        return 12.00;
     }
 
     @NotNull
     @Override
     public String getId() {
-        return "steak-pie-dish";
+        return "Steak and Ale Pie";
     }
 }

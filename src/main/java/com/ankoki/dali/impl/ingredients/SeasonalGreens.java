@@ -22,6 +22,6 @@ public class SeasonalGreens extends Ingredient {
     @NotNull
     @Override
     public String getId() {
-        return "seasonal-greens";
+        return "Seasonal Greens";
     }
 }

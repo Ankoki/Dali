@@ -33,14 +33,38 @@ public class NewPotatoes extends Ingredient {
     @NotNull
     @Override
     public String getId() {
-        return "new-potatoes"; // The ID which is used in the storage. Must be unique.
+        return "New Potatoes"; // The ID which is used in the storage. Must be unique. This is also used on the interface as the name.
     }
     
 }
 ```  
 
-Todo: Dish examples.  
+Registering dishes is just as simple, as these are not stored directly, you will just need to register what ingredients are used, like so.  
+```java
+import com.ankoki.dali.api.Dish;
 
+public class SteakPieMain extends Dish {
+
+    public SteakPie() {
+        super(new SteakPie(1),
+                new Mash(1),
+                new SeasonalGreens(1),
+                new Gravy(1));
+    }
+
+    @Override
+    public double getPrice() {
+        return 12.00;
+    }
+
+    @NotNull
+    @Override
+    public String getId() {
+        return "Steak and Ale Pie";
+    }
+}
+```  
+You do have the option of registering ingredients when initiating the `dishes` array in `com.ankoki.dali.helpers.StorageCache` using the Dish constructor, however I personally find it easier to declare it in the child class itself. 
 ### Third-Party Libraries  
 
-[Argo](https://www.github.com/Moderocky/Argo) - Used for JSON parsing.
+[Argo](https://www.github.com/Moderocky/Argo) by Moderocky - Used for JSON parsing.

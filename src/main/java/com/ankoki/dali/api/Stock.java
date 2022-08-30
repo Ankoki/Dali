@@ -1,6 +1,6 @@
 package com.ankoki.dali.api;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface Stock {
 
@@ -13,9 +13,9 @@ public interface Stock {
     double getPrice();
 
     /**
-     * Gets the ID for the stock.
-     * @return the ID.
+     * Gets the ID for the stock. This is also used on the till as its button label.
+     * @return the ID. Null if the item is a dish and cannot be sold individually.
      */
-    @NotNull
+    @Nullable
     String getId();
 }
